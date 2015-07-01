@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+<html>
+<head>
+   <title>常用console命令</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </head>
+ <body>
+<div id="info">
+    <h3>title Test</h3>
+    <p>Welcome</p>
+</div>
+
+    <script type="text/javascript">
+        console.log('hello');
+		console.info('信息');
+        console.error('错误');
+        console.warn('警告');
+		 
+		 //占位符 console上述的集中度支持printf的占位符格式，支持的占位符有：字符（%s）、整数（%d或%i）、浮点数（%f）和对象（%o）
+		console.log("%d年%d月%d日",2011,3,26);
+		
+		//信息分组
+		console.group("第一组信息");
+			console.log("第一组第一条:我的博客(http://www.ido321.com)");
+			console.log("第一组第二条:CSDN(http://blog.csdn.net/u011043843)");
+		console.groupEnd();
+   　　 console.group("第二组信息");
+			console.log("第二组第一条:程序爱好者QQ群： 259280570");
+			console.log("第二组第二条:欢迎你加入");
+		console.groupEnd();
+		
+		//console.dir()可以显示一个对象所有的属性和方法
+		var info = {
+				a:"sss",
+				b:"xxx"
+            };
+		console.dir(info);
+		
+		//console.dirxml()用来显示网页的某个节点（node）所包含的html/xml代码
+		var info = document.getElementById('info');
+		console.dirxml(info);
+		
+		//console.assert()用来判断一个表达式或变量是否为真。如果结果为否，则在控制台输出一条相应信息，并且抛出一个异常
+		var result = 1;
+		console.assert( result );
+		var year = 2014;
+		console.assert(year == 2018 );
+		
+		/*函数是如何被调用的，在其中加入console.trace()方法就可以了*/
+		function add(a,b){
+			console.trace();
+			return a+b;
+    　　}
+		var x = add3(1,1);
+		function add3(a,b){return add2(a,b);}
+		function add2(a,b){return add1(a,b);}
+		function add1(a,b){return add(a,b);}
+		
+		//console.time()和console.timeEnd()，用来显示代码的运行时间。
+		console.time("控制台计时器一");
+		for(var i=0;i<1000;i++){
+			for(var j=0;j<1000;j++){}
+		}
+		console.timeEnd("控制台计时器一");
+		
+		//console.profile()的性能分析
+		　　function All(){
+                alert(11);
+    　　　　     for(var i=0;i<10;i++){
+                    funcA(1000);
+                 }
+    　　　　    funcB(10000);
+    　　    }
+   
+       　　function funcA(count){
+       　　　　for(var i=0;i<count;i++){}
+       　　}
+  
+       　　function funcB(count){
+       　　　　for(var i=0;i<count;i++){}
+      　　}
+  
+      　　console.profile('性能分析器');
+       　　All();
+       　　console.profileEnd();
+    </script>
+ </body>
+ </html>
